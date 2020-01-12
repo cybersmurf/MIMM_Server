@@ -1,0 +1,193 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Track",
+                              "component": "idtracks",
+                              "name": "idtracksLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTracksForidtracksResult}",
+                              "textProperty": "name",
+                              "valueProperty": "id",
+                              "placeholder": "Choose Track",
+                              "type": "dropdown-datagrid",
+                              "name": "idtracks",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${song.idtracks}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Whispertime",
+                              "component": "whispertime",
+                              "name": "whispertimeLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd.MM.yyyy",
+                              "type": "datepicker",
+                              "name": "whispertime",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${song.whispertime}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Song!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "MimmMysql.createSong",
+                        "parameters": [
+                          {
+                            "name": "Song",
+                            "value": "${song}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${song}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "data": "${song}",
+                  "visible": "${song != null}",
+                  "itemType": "MimmClientBlazor.Models.MimmMysql.Song"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "MimmMysql.getTracks",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTracksForidtracksResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<MimmClientBlazor.Models.MimmMysql.Track>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "song",
+        "type": "set",
+        "value": "new MimmClientBlazor.Models.MimmMysql.Song()",
+        "valueType": "MimmClientBlazor.Models.MimmMysql.Song"
+      }
+    ]
+  },
+  "name": "Add Song",
+  "layout": "Main",
+  "access": []
+}

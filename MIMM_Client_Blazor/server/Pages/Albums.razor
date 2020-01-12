@@ -1,0 +1,34 @@
+﻿@page "/albums"
+@layout MainLayout
+@inherits MimmClientBlazor.Pages.AlbumsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using MimmClientBlazor.Models.MimmApi
+@using MimmClientBlazor.Models.MimmMysql
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Albums">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getAlbumsResult)" TItem="MimmClientBlazor.Models.MimmMysql.Album" PageSize="50" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Album" Context="mimmClientBlazorModelsMimmMysqlAlbum" Property="id" Title="Id">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Album" Context="mimmClientBlazorModelsMimmMysqlAlbum" Property="name" Title="Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Album" Context="mimmClientBlazorModelsMimmMysqlAlbum" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="mimmClientBlazorModelsMimmMysqlAlbum">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, mimmClientBlazorModelsMimmMysqlAlbum))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

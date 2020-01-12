@@ -1,0 +1,39 @@
+﻿@page "/songs"
+@layout MainLayout
+@inherits MimmClientBlazor.Pages.SongsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using MimmClientBlazor.Models.MimmApi
+@using MimmClientBlazor.Models.MimmMysql
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Songs">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getSongsResult)" TItem="MimmClientBlazor.Models.MimmMysql.Song" PageSize="50" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Song" Context="mimmClientBlazorModelsMimmMysqlSong" Property="id" Title="Id">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Song" Context="mimmClientBlazorModelsMimmMysqlSong" Property="idtracks" SortProperty="Track.name" FilterProperty="Track.name" Title="Track">
+              <Template Context="data">
+              @data.Track?.name
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Song" Context="mimmClientBlazorModelsMimmMysqlSong" Property="whispertime" FormatString="{0:dd.MM.yyyy}" Title="Whispertime">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Song" Context="mimmClientBlazorModelsMimmMysqlSong" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="mimmClientBlazorModelsMimmMysqlSong">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, mimmClientBlazorModelsMimmMysqlSong))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

@@ -1,0 +1,34 @@
+﻿@page "/tracks"
+@layout MainLayout
+@inherits MimmClientBlazor.Pages.TracksComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using MimmClientBlazor.Models.MimmApi
+@using MimmClientBlazor.Models.MimmMysql
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tracks">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTracksResult)" TItem="MimmClientBlazor.Models.MimmMysql.Track" PageSize="50" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Track" Context="mimmClientBlazorModelsMimmMysqlTrack" Property="id" Title="Id">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Track" Context="mimmClientBlazorModelsMimmMysqlTrack" Property="name" Title="Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="MimmClientBlazor.Models.MimmMysql.Track" Context="mimmClientBlazorModelsMimmMysqlTrack" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="mimmClientBlazorModelsMimmMysqlTrack">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, mimmClientBlazorModelsMimmMysqlTrack))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

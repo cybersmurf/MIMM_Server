@@ -1,0 +1,62 @@
+{
+  "info": {
+    "title": "MimmApi",
+    "x-withCredentials": false,
+    "x-type": "rest"
+  },
+  "host": "localhost:44305",
+  "basePath": "/api/",
+  "definitions": {
+    "artists": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "albums": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "feelings": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "paths": {
+    "artists": {
+      "get": {
+        "operationId": "Get",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/artists"
+            }
+          }
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ]
+}

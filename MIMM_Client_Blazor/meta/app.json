@@ -1,0 +1,54 @@
+{
+  "dataSources": [
+    "MimmApi",
+    "MimmMysql"
+  ],
+  "generator": "@radzen/blazor-server",
+  "https": false,
+  "ignore": [
+    ""
+  ],
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "MIMMClientBlazor",
+  "navigation": [
+    "Main",
+    "Albums",
+    "Artists",
+    "Feelings",
+    "Songs",
+    "Tracks",
+    "Users"
+  ],
+  "pages": [
+    "Main",
+    "Albums",
+    "Add Album",
+    "Edit Album",
+    "Artists",
+    "Add Artist",
+    "Edit Artist",
+    "Feelings",
+    "Add Feeling",
+    "Edit Feeling",
+    "Songs",
+    "Add Song",
+    "Edit Song",
+    "Tracks",
+    "Add Track",
+    "Edit Track",
+    "Users",
+    "Add User",
+    "Edit User"
+  ],
+  "port": 8000,
+  "serverLang": "cs",
+  "serverPort": 5000,
+  "serverProject": true,
+  "serverVersion": "3",
+  "startPage": "Main",
+  "theme": "dark"
+}

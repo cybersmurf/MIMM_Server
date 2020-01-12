@@ -1,0 +1,58 @@
+﻿@inherits MimmClientBlazor.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using MimmClientBlazor.Models.MimmApi
+@using MimmClientBlazor.Models.MimmMysql
+<RadzenDialog />
+<RadzenNotification />
+
+<RadzenHeader>
+  <ChildContent>
+    <div class="row justify-content-start align-items-center">
+      <div class="col-md-6 d-flex align-items-center">
+        <RadzenSidebarToggle Click="@SidebarToggle0Click">
+        </RadzenSidebarToggle>
+        <RadzenLabel Text="MIMMClientBlazor">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-6 text-lg-right">
+      </div>
+    </div>
+  </ChildContent>
+</RadzenHeader>
+<RadzenBody @ref="body0">
+  <ChildContent>
+    <RadzenContentContainer Name="main">
+    @Body
+    </RadzenContentContainer>
+  </ChildContent>
+</RadzenBody>
+<RadzenSidebar @ref="sidebar0">
+  <ChildContent>
+    <RadzenPanelMenu style="height: 100%">
+      <ChildContent>
+        <RadzenPanelMenuItem Text="Main" Path="main">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Albums" Path="albums">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Artists" Path="artists">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Feelings" Path="feelings">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Songs" Path="songs">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Tracks" Path="tracks">
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Users" Path="users">
+        </RadzenPanelMenuItem>
+      </ChildContent>
+    </RadzenPanelMenu>
+  </ChildContent>
+</RadzenSidebar>
+<RadzenFooter>
+  <ChildContent>
+    <RadzenLabel Text="MIMMClientBlazor, Copyright Ⓒ 2020">
+    </RadzenLabel>
+  </ChildContent>
+</RadzenFooter>

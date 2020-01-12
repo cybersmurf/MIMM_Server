@@ -1,0 +1,1 @@
+{"deploy":{"provider":"zip","server":"","user":"","password":"","siteName":"/","connectionStrings":{"MimmMysql":{"value":"Server=192.168.11.5;Database=mimm;Uid=mimm;Pwd=*Mimm2019;Connection Timeout=30"}},"endPoints":{"MimmApi":{"value":"https://192.168.11.5:44305/api/"}},"method":"computerName","removeAdditional":true}}
